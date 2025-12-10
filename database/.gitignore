@@ -1,0 +1,43 @@
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+.env.*
+!.env.example
+
+# Laravel specific
+/storage/*
+!/storage/app
+!/storage/app/public
+!/storage/framework
+!/storage/framework/cache
+!/storage/framework/cache/data
+!/storage/framework/sessions
+!/storage/framework/testing
+!/storage/framework/views
+!/storage/logs
+bootstrap/cache/*.php
+
+# Cache & logs
+*.log
+*.cache
+*.swp
+*.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Composer
+/composer.lock
+
+# PHPUnit
+.phpunit.result.cache

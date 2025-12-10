@@ -1,0 +1,52 @@
+.container-cadastro-cont{
+    display: flex;
+    justify-content: center;
+    padding: 1.7rem;
+}
+.container-cadastro{
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    width: 580px;
+    height: 435px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.form-cadastro{
+    display: flex;
+    flex-direction: column;
+}
+.titulo{
+    font-weight: 700;
+    font-size: 27.6px;
+    line-height: 36px;
+    color: #000000;
+}
+.text-possui-registro{
+    text-decoration: none;
+    color: #A13379;
+}
+.text-possui-registro:hover{
+    text-decoration: underline;
+    color: #A13379;
+}
+.btn.btn-cadastro{
+    width: 125px;
+    height: 36px;
+    font-size: 15.9px;
+    background: #C9529E;
+    border-radius: 6px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.btn.btn-cadastro:hover{
+    background: #A13379;
+    color: #fff;
+}
