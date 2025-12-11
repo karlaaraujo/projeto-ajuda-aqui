@@ -8,14 +8,15 @@
 
 .container-cadastro-evento {
     background-color: #fff;
-    border: 1px solid #000;
-    border-radius: 5px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
     width: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1rem 4rem;
     gap: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .form-grid {
@@ -30,21 +31,33 @@
 }
 
 .input-padrao-evento {
-    border: 1px solid #000;
-    border-radius: 5px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
     height: 38.7px;
     width: 100%;
     padding: 10px;
+    transition: border-color 0.3s ease;
+}
+.input-padrao-evento:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 .input-padrao-evento.imagem {
     padding: 4px !important;
 }
 
 .textarea-padrao {
-    border: 1px solid #000;
-    border-radius: 5px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
     width: 100%;
     padding: 10px;
+    transition: border-color 0.3s ease;
+}
+.textarea-padrao:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .subtitulo-secao{
@@ -68,7 +81,7 @@
     width: 150px;
     height: 35px;
     font-size: 15.9px;
-    background: var(--cor-rosa-padrao);
+    background: var(--cor-primaria);
     border-radius: 6px;
     color: #fff;
     display: flex;
@@ -76,24 +89,25 @@
     justify-content: center;
     text-transform: uppercase;
     font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
 .btn.btn-enviar:hover {
-    background: var(--cor-rosa-hover);
+    background: var(--cor-primaria-hover);
     color: #fff;
 }
 
 .form-check-input{
-    border: 2px solid #000;
+    border: 2px solid var(--cor-borda);
 }
 .form-check-input:checked {
-    background-color: var(--cor-rosa-hover);
-    border-color: var(--cor-rosa-hover);
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
 }
 .form-check-input:focus {
-    border-color: var(--cor-rosa-padrao);
+    border-color: var(--cor-primaria);
     outline: 0;
-    box-shadow: 0 0 0 .25rem var(--cor-rosa-padrao);
+    box-shadow: 0 0 0 .25rem rgba(37, 99, 235, 0.25);
 }
 
 .form-check-label {

@@ -62,7 +62,7 @@
 }
 
 .social-icon:hover {
-    background-color: var(--cor-rosa-padrao);
+    background-color: var(--cor-primaria);
     color: #fff;
-    border-color: var(--cor-rosa-hover);
+    border-color: var(--cor-primaria-hover);
 }

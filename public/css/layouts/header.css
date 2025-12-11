@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     letter-spacing: -0.008em;
-    color: var(--cor-rosa-padrao);
+    color: var(--cor-primaria);
     text-decoration: none;
 }
 .container-btn-login{
@@ -37,7 +37,7 @@
     width: 125px;
     height: 33px;
     font-size: 16.5px;
-    background-color: var(--cor-rosa-padrao);
+    background-color: var(--cor-primaria);
     border-radius: 6px;
     color: var(--cor-branco);
     display: flex;
@@ -47,21 +47,21 @@
     font-weight: 500;
 }
 .btn-login:hover{
-    background: var(--cor-rosa-hover);
+    background: var(--cor-primaria-hover);
     color: var(--cor-branco);
 }
 .btn-usuario{
     background-color: none;
-    color: var(--cor-rosa-hover);
+    color: var(--cor-primaria-hover);
     font-size: 17px;
     font-weight: 500;
     text-transform: uppercase;
 }
 .btn-usuario:hover{
-    border: 1px solid var(--cor-rosa-hover);
-    color: var(--cor-rosa-hover);
+    border: 1px solid var(--cor-primaria-hover);
+    color: var(--cor-primaria-hover);
 }
 .dropdown-item:hover{
-    background-color: var(--cor-rosa-claro);
+    background-color: var(--cor-fundo-claro);
     color: var(--cor-texto);
 }
