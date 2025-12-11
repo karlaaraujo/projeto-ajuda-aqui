@@ -24,7 +24,7 @@
     <!-- Bottom Section -->
     <div class="footer-bottom">
         <span class="footer-copyright">
-            © Ajuda Aqui 2024. Juntos fazemos a diferença!
+            © Ajuda Aqui 2025. Juntos fazemos a diferença!
         </span>
         <div class="footer-socials">
             <span class="social-icon">⚪</span>
