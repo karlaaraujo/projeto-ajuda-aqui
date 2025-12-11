@@ -7,7 +7,7 @@
         <!-- Logo -->
         <div class="footer-logo">
             <a href="{{ route('home') }}">
-                <img class="logo-footer" src="{{ asset('img/logo.png') }}" alt="logo Ajuda Aqui">
+                <img class="logo-footer" src="{{ asset('img/2.png') }}" alt="logo Ajuda Aqui">
             </a>
         </div>
 

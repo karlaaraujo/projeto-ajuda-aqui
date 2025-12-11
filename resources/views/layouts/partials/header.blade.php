@@ -1,7 +1,7 @@
 <header class="header">
     <div class="div-itens-nav">
         <a href="{{ route('home') }}">
-            <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo Ajuda Aqui">
+            <img class="logo" src="{{ asset('img/2.png') }}" alt="logo Ajuda Aqui">
         </a>
         <a href="{{ route('acoes.listar') }}" class="item-nav">Todas as ações</a>
         <a href="{{ route('acoes.listar.hoje') }}" class="item-nav">Hoje</a>
