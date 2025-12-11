@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relacionamento: Um usuário pode organizar muitas ações
+    public function acoes()
+    {
+        return $this->hasMany(Acao::class, 'organizador_id');
+    }
 }

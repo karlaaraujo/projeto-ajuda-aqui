@@ -1,12 +1,12 @@
 <header class="header">
     <div class="div-itens-nav">
         <a href="{{ route('home') }}">
-            <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo viva maceió">
+            <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo Ajuda Aqui">
         </a>
-        <a href="{{ route('eventos.listar') }}" class="item-nav">Todos os eventos</a>
-        <a href="{{ route('eventos.listar.hoje') }}" class="item-nav">Hoje</a>
-        <a href="{{ route('eventos.listar') }}" class="item-nav">Próximos</a>
-        <a href="{{ route('login') }}" class="item-nav">Divulgue seu evento</a>
+        <a href="{{ route('acoes.listar') }}" class="item-nav">Todas as ações</a>
+        <a href="{{ route('acoes.listar.hoje') }}" class="item-nav">Hoje</a>
+        <a href="{{ route('acoes.listar') }}" class="item-nav">Próximas</a>
+        <a href="{{ route('login') }}" class="item-nav">Cadastre sua ação</a>
     </div>
 
     <div class="container-btn-login">
@@ -18,6 +18,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Perfil</a></li>
+                    <li><a class="dropdown-item" href="{{ route('dashboard') }}">Minhas Ações</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -27,9 +28,8 @@
                 </ul>
             </div>
         @else
-            <!-- Localização e ícone para visitantes -->
-            <p class="item-nav loc-nav">Maceió - AL</p>
-            <img src="{{ asset('icons/icon-mapa.svg') }}" alt="Ícone Mapa" class="icone" />
+            <!-- Botão para visitantes -->
+            <a href="{{ route('login') }}" class="btn btn-primary">Entrar</a>
         @endauth
     </div>
 </header>

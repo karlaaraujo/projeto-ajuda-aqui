@@ -7,14 +7,15 @@
         <!-- Logo -->
         <div class="footer-logo">
             <a href="{{ route('home') }}">
-                <img class="logo-footer" src="{{ asset('img/logo.png') }}" alt="logo viva maceió">
+                <img class="logo-footer" src="{{ asset('img/logo.png') }}" alt="logo Ajuda Aqui">
             </a>
         </div>
 
         <!-- Links -->
         <div class="footer-links">
             <a href="#" class="footer-link">Suporte</a>
-            <a href="#" class="footer-link">Recursos</a>
+            <a href="#" class="footer-link">Sobre Nós</a>
+            <a href="#" class="footer-link">Como Ajudar</a>
         </div>
     </div>
 
@@ -23,7 +24,7 @@
     <!-- Bottom Section -->
     <div class="footer-bottom">
         <span class="footer-copyright">
-            © Photo, Inc. 2024. Volte sempre!
+            © Ajuda Aqui 2024. Juntos fazemos a diferença!
         </span>
         <div class="footer-socials">
             <span class="social-icon">⚪</span>

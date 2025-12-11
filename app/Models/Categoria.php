@@ -25,10 +25,10 @@ class Categoria extends Model
         'updated_at' => 'datetime',
     ];
 
-    // Relacionamento: Uma categoria tem muitas campanhas
-    public function campanhas()
+    // Relacionamento: Uma categoria tem muitas ações
+    public function acoes()
     {
-        return $this->hasMany(Campanha::class, 'categoria_id');
+        return $this->hasMany(Acao::class, 'categoria_id');
     }
 
     // Scope: Categorias ativas

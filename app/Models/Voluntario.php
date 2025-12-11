@@ -12,7 +12,7 @@ class Voluntario extends Model
     protected $table = 'voluntarios';
 
     protected $fillable = [
-        'campanha_id',
+        'acao_id',
         'nome',
         'email',
         'telefone',
@@ -28,10 +28,10 @@ class Voluntario extends Model
         'updated_at' => 'datetime',
     ];
 
-    // Relacionamento: Um voluntário pertence a uma campanha
-    public function campanha()
+    // Relacionamento: Um voluntário pertence a uma ação
+    public function acao()
     {
-        return $this->belongsTo(Campanha::class, 'campanha_id');
+        return $this->belongsTo(Acao::class, 'acao_id');
     }
 
     // Scope: Voluntários confirmados

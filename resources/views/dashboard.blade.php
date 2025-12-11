@@ -19,88 +19,84 @@
         </div>
     @endif
     <div class="container-adicionar-eventos">
-        <h2 class="titulo-secao">Cadastrar evento</h2>
+        <h2 class="titulo-secao">Cadastrar Ação Solidária</h2>
 
         <div class="container-cadastro-evento">
-            <form action="{{ route('eventos.novo') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('acoes.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <h3 class="titulo">Informações do Evento</h3>
+                <h3 class="titulo">Informações da Ação</h3>
                 <div class="form-grid">
-                    <div>
-                        <input type="text" id="titulo" name="titulo" class="input-padrao-evento" placeholder="Título do Evento*" required>
-                    </div>
-                    <div>
-                        <input type="text" id="nome_organizador" name="nome_organizador" class="input-padrao-evento" placeholder="Nome do Organizador">
-                    </div>
                     <div class="full-width">
-                        <textarea id="descricao" name="descricao" class="textarea-padrao" rows="3" placeholder="Descrição do Evento"></textarea>
+                        <input type="text" id="titulo" name="titulo" class="input-padrao-evento"
+                            placeholder="Título da Ação*" value="{{ old('titulo') }}" required>
                     </div>
 
                     <div class="full-width">
-                        <label for="categorias" class="text-comum">Categorias</label>
-                        <select id="categorias" name="categorias[]" class="input-padrao-evento" multiple="multiple">
+                        <textarea id="descricao" name="descricao" class="textarea-padrao" rows="5"
+                            placeholder="Descrição da Ação">{{ old('descricao') }}</textarea>
+                    </div>
+
+                    <div class="full-width">
+                        <label for="imagem" class="text-comum">Imagem da Ação</label>
+                        <input type="file" id="imagem" name="imagem" class="input-padrao-evento" accept="image/*">
+                        <small class="text-muted">Formatos aceitos: JPG, PNG, GIF (máx. 2MB)</small>
+                    </div>
+
+                    <div>
+                        <label for="categoria_id" class="text-comum">Categoria</label>
+                        <select id="categoria_id" name="categoria_id" class="input-padrao-evento">
+                            <option value="">Selecione uma categoria</option>
                             @foreach ($categorias as $categoria)
-                                <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                                <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
+                                    {{ $categoria->nome }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
 
                     <div>
-                        <label for="data_hora_inicio" class="text-comum">Data e Hora Início*</label>
-                        <input type="datetime-local" id="data_hora_inicio" name="data_hora_inicio" class="input-padrao-evento" required>
+                        <label for="urgencia" class="text-comum">Urgência*</label>
+                        <select id="urgencia" name="urgencia" class="input-padrao-evento" required>
+                            <option value="baixa" {{ old('urgencia') == 'baixa' ? 'selected' : '' }}>Baixa</option>
+                            <option value="media" {{ old('urgencia', 'media') == 'media' ? 'selected' : '' }}>Média</option>
+                            <option value="alta" {{ old('urgencia') == 'alta' ? 'selected' : '' }}>Alta</option>
+                            <option value="critica" {{ old('urgencia') == 'critica' ? 'selected' : '' }}>Crítica</option>
+                        </select>
                     </div>
+
                     <div>
-                        <label for="data_hora_fim" class="text-comum">Data e Hora Fim</label>
-                        <input type="datetime-local" id="data_hora_fim" name="data_hora_fim" class="input-padrao-evento">
+                        <label for="data" class="text-comum">Data da Ação</label>
+                        <input type="date" id="data" name="data" class="input-padrao-evento"
+                            value="{{ old('data') }}">
                     </div>
+
                     <div>
-                        <label for="idade_minima" class="text-comum">Idade mínima</label>
-                        <input type="number" id="idade_minima" name="idade_minima" class="input-padrao-evento" >
+                        <label for="meta" class="text-comum">Meta (R$)</label>
+                        <input type="number" step="0.01" id="meta" name="meta" class="input-padrao-evento"
+                            placeholder="0.00" value="{{ old('meta') }}">
                     </div>
-                    <div>
-                        <label for="imagem" class="text-comum">Link da imagem do Evento</label>
-                        <input type="url" id="imagem" name="imagem" class="input-padrao-evento imagem">
-                    </div>
+
                     <div class="full-width">
-                        <input type="url" id="link" name="link" class="input-padrao-evento" placeholder="Link para mais informações">
+                        <input type="text" id="localizacao" name="localizacao" class="input-padrao-evento"
+                            placeholder="Localização" value="{{ old('localizacao') }}">
                     </div>
                 </div>
 
-                <div class="form-grid mt-3">
-                    <div class="form-check">
-                        <input type="hidden" name="fl_ingresso" value="0">
-                        <input type="checkbox" name="fl_ingresso" value="1" {{ old('fl_ingresso') ? 'checked' : '' }}>
-                        <label for="fl_ingresso" class="form-check-label">Necessário a compra de ingresso</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="hidden" name="fl_gratis" value="0">
-                        <input type="checkbox" name="fl_gratis" value="1" {{ old('fl_gratis') ? 'checked' : '' }}>
-                        <label for="fl_gratis" class="form-check-label">Gratuito</label>
-                    </div>
-                </div>
-
-                <h3 class="titulo">Informações do Local</h3>
+                <h3 class="titulo">Informações de Contato</h3>
                 <div class="form-grid">
                     <div>
-                        <input type="text" id="local_nome" name="local_nome" class="input-padrao-evento" placeholder="Nome do Local*" required>
+                        <input type="email" id="email_contato" name="email_contato" class="input-padrao-evento"
+                            placeholder="Email de Contato" value="{{ old('email_contato') }}">
                     </div>
                     <div>
-                        <input type="text" id="local_rua" name="local_rua" class="input-padrao-evento" placeholder="Rua*" required>
-                    </div>
-                    <div>
-                        <input type="text" id="local_cidade" name="local_cidade" class="input-padrao-evento" placeholder="Cidade*" required>
-                    </div>
-                    <div>
-                        <input type="text" id="local_estado" name="local_estado" class="input-padrao-evento" placeholder="Estado*" required>
-                    </div>
-                    <div class="full-width">
-                        <input type="text" id="local_numero" name="local_numero" class="input-padrao-evento" placeholder="Número*" required>
+                        <input type="text" id="telefone_contato" name="telefone_contato" class="input-padrao-evento"
+                            placeholder="Telefone de Contato" value="{{ old('telefone_contato') }}">
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-center mt-4 mb-2">
-                    <button type="submit" class="btn btn-enviar">Enviar</button>
+                    <button type="submit" class="btn btn-enviar">Cadastrar Ação</button>
                 </div>
             </form>
         </div>

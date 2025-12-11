@@ -12,7 +12,7 @@ class Doador extends Model
     protected $table = 'doadores';
 
     protected $fillable = [
-        'campanha_id',
+        'acao_id',
         'nome',
         'email',
         'telefone',
@@ -30,10 +30,10 @@ class Doador extends Model
         'updated_at' => 'datetime',
     ];
 
-    // Relacionamento: Um doador pertence a uma campanha
-    public function campanha()
+    // Relacionamento: Um doador pertence a uma ação
+    public function acao()
     {
-        return $this->belongsTo(Campanha::class, 'campanha_id');
+        return $this->belongsTo(Acao::class, 'acao_id');
     }
 
     // Scope: Doações confirmadas

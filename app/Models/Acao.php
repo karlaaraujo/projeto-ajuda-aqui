@@ -6,16 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Campanha extends Model
+class Acao extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'campanhas';
+    protected $table = 'acoes';
 
     protected $fillable = [
         'titulo',
         'descricao',
-        'categoria',
+        'imagem',
+        'categoria_id',
         'localizacao',
         'data',
         'meta',
@@ -30,51 +31,58 @@ class Campanha extends Model
     protected $casts = [
         'data' => 'date',
         'progresso' => 'integer',
+        'meta' => 'decimal:2',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
 
-    // Relacionamento: Uma campanha tem muitos voluntários
+    // Relacionamento: Uma ação pertence a uma categoria
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
+
+    // Relacionamento: Uma ação tem muitos voluntários
     public function voluntarios()
     {
-        return $this->hasMany(Voluntario::class, 'campanha_id');
+        return $this->hasMany(Voluntario::class, 'acao_id');
     }
 
-    // Relacionamento: Uma campanha tem muitos doadores
+    // Relacionamento: Uma ação tem muitos doadores
     public function doadores()
     {
-        return $this->hasMany(Doador::class, 'campanha_id');
+        return $this->hasMany(Doador::class, 'acao_id');
     }
 
-    // Relacionamento: Uma campanha pertence a um organizador (usuário)
+    // Relacionamento: Uma ação pertence a um organizador (usuário)
     public function organizador()
     {
-        return $this->belongsTo(Usuario::class, 'organizador_id');
+        return $this->belongsTo(User::class, 'organizador_id');
     }
 
-    // Scope: Campanhas ativas
+    // Scope: Ações ativas
     public function scopeAtivas($query)
     {
         return $query->where('status', 'ativa');
     }
 
-    // Scope: Campanhas pausadas
+    // Scope: Ações pausadas
     public function scopePausadas($query)
     {
         return $query->where('status', 'pausada');
     }
 
-    // Scope: Campanhas encerradas
+    // Scope: Ações encerradas
     public function scopeEncerradas($query)
     {
         return $query->where('status', 'encerrada');
     }
 
     // Scope: Filtrar por categoria
-    public function scopePorCategoria($query, $categoria)
+    public function scopePorCategoria($query, $categoriaId)
     {
-        return $query->where('categoria', $categoria);
+        return $query->where('categoria_id', $categoriaId);
     }
 
     // Scope: Filtrar por urgência
@@ -111,21 +119,21 @@ class Campanha extends Model
         return $this->quantidade_voluntarios + $this->quantidade_doadores;
     }
 
-    // Método: Pausar campanha
+    // Método: Pausar ação
     public function pausar()
     {
         $this->status = 'pausada';
         $this->save();
     }
 
-    // Método: Reativar campanha
+    // Método: Reativar ação
     public function reativar()
     {
         $this->status = 'ativa';
         $this->save();
     }
 
-    // Método: Encerrar campanha
+    // Método: Encerrar ação
     public function encerrar()
     {
         $this->status = 'encerrada';

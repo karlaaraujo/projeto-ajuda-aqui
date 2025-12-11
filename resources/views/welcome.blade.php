@@ -4,36 +4,42 @@
 
 <x-guest-layout title="Bem-vindo">
     <section class="container-homepage">
-        <!-- Eventos em destaque -->
+        <!-- Ações em destaque -->
         <section class="container-eventos-destaque">
-            <h1 class="titulo-secao">Eventos em destaque</h1>
+            <h1 class="titulo-secao">Ações em Destaque</h1>
             <div class="evento-destaque">
-                @foreach ($eventosDestaque as $evento)
+                @foreach ($acoesDestaque as $acao)
                     <div class="evento-card destaque">
-                        <img src="{{ $evento->imagem }}" alt="Imagem" class="imagem-placeholder" />
+                        <img src="{{ $acao->imagem ? asset('storage/' . $acao->imagem) : asset('img/placeholder-acao.jpg') }}" alt="Imagem" class="imagem-placeholder" />
                         <div class="evento-conteudo">
-                            <h2 class="titulo-evento">{{ $evento->titulo }}</h2>
-                            <p class="descricao-evento">{{ $evento->descricao }}</p>
-                            <a href="{{ route('eventos.show', $evento->id) }}" class="botao-saiba-mais">Saiba mais</a>
+                            <h2 class="titulo-evento">{{ $acao->titulo }}</h2>
+                            <p class="descricao-evento">{{ Str::limit($acao->descricao, 150) }}</p>
+                            <span class="badge bg-{{ $acao->urgencia === 'critica' ? 'danger' : ($acao->urgencia === 'alta' ? 'warning' : 'info') }}">
+                                Urgência: {{ ucfirst($acao->urgencia) }}
+                            </span>
+                            <a href="{{ route('acoes.show', $acao->id) }}" class="botao-saiba-mais">Saiba mais</a>
                         </div>
                     </div>
                 @endforeach
             </div>
         </section>
 
-        <!-- Próximos eventos -->
+        <!-- Próximas ações -->
         <section class="container-proximos-eventos">
-            <h1 class="titulo-secao">Próximos eventos</h1>
+            <h1 class="titulo-secao">Próximas Ações</h1>
             <div class="grid-eventos">
-                @foreach ($proximosEventos as $evento)
+                @foreach ($proximasAcoes as $acao)
                     <div class="evento-card">
 
-                        <img src="{{ $evento->imagem }}" alt="Imagem" class="imagem-placeholder" />
+                        <img src="{{ $acao->imagem ? asset('storage/' . $acao->imagem) : asset('img/placeholder-acao.jpg') }}" alt="Imagem" class="imagem-placeholder" />
                         <div class="evento-conteudo">
-                            <h2 class="titulo-evento">{{ $evento->titulo }}</h2>
-                            <p class="data-evento">{{ $evento->data_hora_inicio->format('d/m/Y') }} - {{ $evento->data_hora_fim->format('d/m/Y') }} </p>
-                            <p class="descricao-evento">{{ $evento->descricao }}</p>
-                            <a href="{{ route('eventos.show', $evento->id) }}" class="botao-saiba-mais">Saiba mais</a>
+                            <h2 class="titulo-evento">{{ $acao->titulo }}</h2>
+                            <p class="data-evento">{{ $acao->data ? $acao->data->format('d/m/Y') : 'Data a definir' }}</p>
+                            <p class="descricao-evento">{{ Str::limit($acao->descricao, 100) }}</p>
+                            @if($acao->categoria)
+                                <span class="badge bg-secondary">{{ $acao->categoria->nome }}</span>
+                            @endif
+                            <a href="{{ route('acoes.show', $acao->id) }}" class="botao-saiba-mais">Saiba mais</a>
                         </div>
                     </div>
                 @endforeach
@@ -43,7 +49,7 @@
         <!-- Categorias -->
         <section class="container-categorias">
             <h1 class="titulo-secao categorias">Categorias</h1>
-            <p class="descricao-categorias">Explore as diversas categorias de eventos disponíveis na plataforma.</p>
+            <p class="descricao-categorias">Explore as diversas categorias de ações solidárias disponíveis na plataforma.</p>
             <div class="grid-categorias">
                 @foreach ($categorias as $categoria)
                     <div class="categoria-item">
@@ -54,10 +60,10 @@
             </div>
         </section>
 
-        <!-- Divulgue seu evento -->
+        <!-- Cadastre sua ação -->
         <section class="divulgue-evento">
-            <h1 class="titulo-secao">Divulgue seu evento!</h1>
-            <a href="" class="botao-saiba-mais">Cadastrar</a>
+            <h1 class="titulo-secao">Cadastre sua ação solidária!</h1>
+            <a href="{{ route('cadastro.acao') }}" class="botao-saiba-mais">Cadastrar</a>
         </section>
     </section>
 </x-guest-layout>
